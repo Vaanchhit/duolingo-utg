@@ -252,6 +252,58 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 .challenge .hi{font-size:20px}
 .challenge .row .btn{font-size:15px;padding:10px}
 
+
+/* live map */
+#map{gap:10px;padding-bottom:12px}
+.maphead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.maphead h2{margin:0;font:700 24px/1 var(--display)}
+.maphead small{display:flex;align-items:center;gap:5px;font:700 13px var(--body);color:var(--green-btn)}
+.maphead small i{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.2s infinite}
+.ghost{border:2px solid var(--line);background:#fff;border-radius:14px;padding:5px 10px;display:flex;align-items:center;gap:6px;font:600 14px var(--display);box-shadow:0 3px 0 var(--line)}
+.ghost.on{background:#3C3C3C;color:#fff;border-color:#3C3C3C;box-shadow:0 3px 0 #111}
+.layers{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:3px}
+.layers::-webkit-scrollbar{display:none}
+.layers button{flex-shrink:0;border:2px solid var(--line);background:#fff;border-radius:999px;padding:3px 12px;font:600 14px var(--display);box-shadow:0 3px 0 var(--line);display:flex;align-items:center;gap:5px}
+.layers button i{width:10px;height:10px;border-radius:50%}
+.layers button.on{border-color:#84D8FF;background:var(--blue-soft);color:#0C67A6;box-shadow:0 3px 0 #84D8FF}
+.mapbox{position:relative;flex:1;min-height:440px;border-radius:24px;overflow:hidden;border:2px solid #CDEBFB;background:#FFF3DA}
+.mapbox>svg{position:absolute;inset:0;width:100%;height:100%}
+.heat{position:absolute;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,rgba(255,75,75,.55),rgba(255,154,31,.35) 40%,rgba(255,201,60,.18) 62%,transparent 72%);animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.12)}}
+.pin{position:absolute;transform:translate(-50%,-100%);border:none;background:none;padding:0;display:flex;flex-direction:column;align-items:center;transition:transform .2s cubic-bezier(.3,1.6,.5,1);z-index:2}
+.pin:hover,.pin.sel{transform:translate(-50%,-100%) scale(1.15);z-index:5}
+.pin .head{width:36px;height:36px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;color:#fff;font:700 15px var(--display);box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.pin .tail{width:0;height:0;border:6px solid transparent;border-top:8px solid #fff;margin-top:-2px}
+.pin.person .head{animation:drift 4s ease-in-out infinite}
+.pin.person:nth-child(odd) .head{animation-delay:-2s}
+@keyframes drift{50%{transform:translateY(-4px)}}
+.pin .count{position:absolute;top:-6px;right:-10px;background:var(--red);color:#fff;border:2px solid #fff;border-radius:999px;font:700 11px var(--display);padding:0 5px;line-height:16px}
+.pin.place .head{border-radius:12px 12px 12px 12px}
+.pin.locked .head{background:#BDBDBD!important}
+.place-label{position:absolute;transform:translate(-50%,0);font:600 11px var(--display);color:#6B4A1F;background:rgba(255,255,255,.85);border-radius:6px;padding:0 5px;white-space:nowrap;pointer-events:none}
+.me{position:absolute;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.me .dot{width:48px;height:48px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 0 0 0 rgba(28,164,238,.5);animation:meping 1.6s infinite;display:grid;place-items:center}
+@keyframes meping{to{box-shadow:0 0 0 18px rgba(28,164,238,0)}}
+.me .you{display:block;text-align:center;font:700 11px var(--display);color:#fff;background:var(--blue-btn);border-radius:999px;margin-top:3px;padding:0 6px}
+.mapbox.ghosted .me .dot{opacity:.35;border-style:dashed;animation:none}
+.ghostnote{position:absolute;left:10px;right:10px;top:10px;z-index:6;background:#3C3C3C;color:#fff;border-radius:12px;padding:6px 10px;font:600 13px var(--body);display:none}
+.mapbox.ghosted .ghostnote{display:block}
+.fab{position:absolute;right:12px;bottom:12px;z-index:6;border:none;border-radius:16px;background:var(--pink);color:#fff;font:700 15px var(--display);padding:10px 14px;box-shadow:0 5px 0 #D63C84;display:flex;align-items:center;gap:6px}
+.fab:active{transform:translateY(5px);box-shadow:none}
+.mapsheet{position:absolute;left:8px;right:8px;bottom:8px;z-index:8;background:#fff;border-radius:20px;border:2px solid var(--line);box-shadow:0 6px 0 var(--line),0 10px 30px rgba(0,0,0,.15);padding:12px 14px;display:flex;flex-direction:column;gap:8px;transform:translateY(130%);transition:transform .35s cubic-bezier(.3,1.3,.5,1)}
+.mapsheet.show{transform:none}
+.mapsheet .top{display:flex;gap:10px;align-items:center}
+.mapsheet .av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font:700 18px var(--display);flex-shrink:0}
+.mapsheet h3{margin:0;font:600 18px/1.15 var(--display)}
+.mapsheet .sub{font-size:13px;font-weight:700;color:var(--muted)}
+.mapsheet p{margin:0;font-size:14px;font-weight:600;line-height:1.4}
+.mapsheet .close{margin-left:auto;border:none;background:#F0F0F0;border-radius:10px;width:34px;height:34px;display:grid;place-items:center;color:#777;flex-shrink:0}
+.mapsheet .tags{display:flex;flex-wrap:wrap;gap:5px}
+.mapsheet .tags span{font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:#F2F2F2;color:#555}
+.mapsheet .safety{font-size:12px;font-weight:700;color:#0C67A6;background:var(--blue-soft);border-radius:10px;padding:5px 8px}
+.mapsheet textarea{width:100%;min-height:62px;border:2px solid var(--line);border-radius:12px;padding:8px;font:600 14px var(--body);resize:none;color:var(--ink);background:#fff}
+.mapsheet .btn{padding:10px 14px;font-size:16px}
+
 /* SOS */
 #sos{background:#fff;gap:12px}
 .sos-head{border-radius:20px;background:var(--red-btn);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px}
@@ -269,7 +321,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 
 /* tab bar */
 .tabs{display:flex;justify-content:space-around;border-top:2px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));background:#fff;flex-shrink:0}
-.tab{border:2px solid transparent;background:none;border-radius:14px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;font:600 12px var(--display);color:var(--muted);min-width:56px}
+.tab{border:2px solid transparent;background:none;border-radius:14px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;font:600 12px var(--display);color:var(--muted);min-width:50px}
 .tab svg{transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
 .tab.on{border-color:#84D8FF;background:var(--blue-soft);color:#0C67A6}
 .tab.on svg{transform:scale(1.15) rotate(-6deg)}
@@ -332,6 +384,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
     <button class="tile phototile" data-go="discover"><span class="ic" style="background:var(--blue)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3"/><circle cx="12" cy="12" r="3.5"/></svg></span><b>Scan &amp; Discover</b><span>Point at the Taj, hear its story</span></button>
     <button class="tile" data-go="speak"><span class="ic" style="background:var(--purple)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></span><b>Whisper Coach</b><span>What to say, right now</span></button>
     <button class="tile" data-go="quests"><span class="ic" style="background:var(--yellow)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6A4A00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></span><b>Side quests</b><span>3 near you in Taj Ganj</span></button>
+    <button class="tile" data-go="map" style="grid-column:1 / -1;flex-direction:row;align-items:center;background:linear-gradient(90deg,#fff 55%,#E7F8D9);border-color:#B8F28B;box-shadow:0 4px 0 #B8F28B"><span class="ic" style="background:var(--green)"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><circle cx="15" cy="10" r="3" fill="#FF4B4B"/></svg></span><span style="display:flex;flex-direction:column;gap:2px"><b>Agra live map</b><span>38 learners nearby · tips, meetups &amp; secret spots</span></span></button>
     <button class="tile secret-tile" data-go="secrets"><span class="ic" style="background:var(--purple)"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.5 6-12a6 6 0 0 0-6-6z"/><path fill="#A86BFF" d="M12 5l1 2.3 2.4.2-1.8 1.6.5 2.4L12 10.3l-2.1 1.2.5-2.4-1.8-1.6 2.4-.2z"/></svg></span><b>Secret spots</b><span>Hidden gems from locals</span></button>
     <button class="tile" data-go="passport"><span class="ic" style="background:var(--pink)"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5" fill="#fff"/><circle cx="12" cy="11" r="3" fill="none" stroke="#FF5FA8" stroke-width="2"/></svg></span><b>Passport</b><span>7 stamps · Agra recap</span></button>
     <button class="tile sos-tile" data-go="sos" style="grid-column:1 / -1;flex-direction:row;align-items:center"><span class="ic" style="background:var(--red-btn)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg></span><span style="display:flex;flex-direction:column"><b>SOS card</b><span>Emergency phrases · works offline</span></span></button>
@@ -473,6 +526,37 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   <div style="font-size:13px;font-weight:700;color:var(--muted);text-align:center">Know a spot? Locals can add one after verification.</div>
 </section>
 
+
+<!-- LIVE MAP -->
+<section class="screen" id="map" aria-label="Agra live map">
+  <div class="maphead">
+    <div><h2>Agra live</h2><small><i aria-hidden="true"></i><span id="liveCount">38 learners exploring now</span></small></div>
+    <button class="ghost" id="ghostBtn" type="button" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8v12l3-2 2.5 2 2.5-2 2.5 2 2.5-2 3 2V10a8 8 0 0 0-8-8zm-3 10a1.6 1.6 0 1 1 0-3.2A1.6 1.6 0 0 1 9 12zm6 0a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2z"/></svg><span>Ghost mode</span></button>
+  </div>
+  <div class="layers" role="group" aria-label="Map layers">
+    <button class="on" data-layer="person"><i style="background:var(--blue)"></i>Travellers</button>
+    <button class="on" data-layer="tip"><i style="background:var(--pink)"></i>Tips &amp; secrets</button>
+    <button class="on" data-layer="event"><i style="background:var(--green)"></i>Meetups</button>
+    <button data-layer="trip"><i style="background:var(--orange)"></i>My trip</button>
+  </div>
+  <div class="mapbox" id="mapbox">
+    <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="400" height="520" fill="#FFF3DA"/>
+      <g fill="#E3F5C8"><circle cx="300" cy="215" r="44"/><circle cx="330" cy="120" r="30"/><circle cx="90" cy="120" r="34"/><rect x="250" y="300" width="70" height="40" rx="14"/></g>
+      <path d="M-20 40 C90 60 150 30 210 70 S260 170 230 230 S250 300 330 285 S400 250 430 260" fill="none" stroke="#9ED8FF" stroke-width="34" stroke-linecap="round"/>
+      <path d="M-20 40 C90 60 150 30 210 70 S260 170 230 230 S250 300 330 285 S400 250 430 260" fill="none" stroke="#C7EBFF" stroke-width="16" stroke-linecap="round" stroke-dasharray="2 18"/>
+      <g fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"><path d="M0 330 H400"/><path d="M120 120 V520"/><path d="M0 450 C120 430 220 470 400 440"/><path d="M120 330 L300 360"/><path d="M226 80 L330 40"/></g>
+      <g fill="none" stroke="#F4DFB8" stroke-width="2" stroke-dasharray="4 6"><path d="M150 360 L280 330"/></g>
+      <text x="300" y="262" font-family="Baloo 2, sans-serif" font-weight="700" font-size="13" fill="#3C8DC4" transform="rotate(-8 300 262)">Yamuna</text>
+    </svg>
+    <div class="ghostnote">Ghost mode is on. Only you can see where you are.</div>
+    <div id="mapLayer"></div>
+    <div class="me" id="me" style="left:52%;top:72%"><div class="dot"><svg width="38" height="38" viewBox="0 0 100 100"><use href="#globi"/></svg></div><span class="you">You</span></div>
+    <button class="fab" id="dropTip" type="button"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm1 10h-2V10H9V8h2V6h2v2h2v2h-2z"/></svg>Drop a tip</button>
+    <div class="mapsheet" id="mapsheet" role="dialog" aria-label="Map details"></div>
+  </div>
+</section>
+
 <!-- SOS -->
 <section class="screen" id="sos" aria-label="Emergency card">
   <div class="sos-head">
@@ -492,6 +576,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 <nav class="tabs" aria-label="Main">
   <button class="tab on" data-go="home"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF9A1F" d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Trip</button>
   <button class="tab" data-go="discover"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="4" fill="#1CA4EE"/><circle cx="12" cy="13" r="4" fill="#fff"/><circle cx="12" cy="13" r="2" fill="#1CA4EE"/><rect x="8" y="3" width="8" height="4" rx="1.5" fill="#1CA4EE"/></svg>Discover</button>
+  <button class="tab" data-go="map"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#5BC714" d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path fill="#fff" d="M15 6v15l-6-3V3z" opacity=".35"/><circle cx="15" cy="10" r="3" fill="#FF4B4B"/></svg>Map</button>
   <button class="tab" data-go="speak"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#A86BFF" d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><circle cx="8" cy="10.5" r="1.5" fill="#fff"/><circle cx="12" cy="10.5" r="1.5" fill="#fff"/><circle cx="16" cy="10.5" r="1.5" fill="#fff"/></svg>Speak</button>
   <button class="tab" data-go="quests"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFC93C" d="M5 3h12l-2.5 4.5L17 12H7v9H5z"/></svg>Quests</button>
   <button class="tab" data-go="passport"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="3" fill="#FF5FA8"/><circle cx="12" cy="10" r="3.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M8.5 17h7" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Passport</button>
@@ -735,6 +820,103 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
     card.appendChild(ch);
   }
   renderSpots();
+
+
+  /* ---------- live community map ---------- */
+  const COLORS = ['#1CA4EE','#FF9A1F','#A86BFF','#FF5FA8','#2E9F0B','#E0A800'];
+  const mapItems = [
+    {k:'place', x:74, y:58, label:'Taj Mahal'},
+    {k:'place', x:24, y:20, label:'Agra Fort'},
+    {k:'place', x:70, y:30, label:'Mehtab Bagh'},
+    {k:'place', x:80, y:14, label:'Itimad-ud-Daulah'},
+    {k:'place', x:30, y:82, label:'Sadar Bazaar'},
+    {k:'place', x:54, y:80, label:'Taj Ganj'},
+    {k:'heat', x:68, y:58, r:170}, {k:'heat', x:26, y:26, r:120}, {k:'heat', x:32, y:86, r:110}, {k:'heat', x:55, y:76, r:90},
+    {k:'person', x:66, y:57, n:'A', count:12, title:'12 learners at the Taj', sub:'Most are on the Taj Ganj trail', body:'Busiest between 6 and 9 am. Practise "दो टिकट, कृपया" (two tickets, please) before the East Gate queue.', tags:['Hindi learners','Live now']},
+    {k:'person', x:44, y:60, n:'M', title:'Meera', sub:'From Pune · Hindi, level 6', body:'Just finished the "Read the shoe sign" quest.', tags:['Trip Circle','Solo traveller'], wave:true},
+    {k:'person', x:20, y:30, n:'J', title:'Jonas', sub:'From Berlin · Hindi, level 3', body:'Exploring Agra Fort. Asked a guide for directions in Hindi!', tags:['Public profile'], wave:true},
+    {k:'person', x:35, y:78, n:'S', count:5, title:'5 learners in Sadar Bazaar', sub:'Street-food crawl in progress', body:'Popular phrase here today: "तीखा नहीं, कृपया" (not spicy, please).', tags:['Live now']},
+    {k:'person', x:66, y:22, n:'K', title:'Kenji', sub:'From Osaka · Hindi, level 2', body:'Collected the Itimad-ud-Daulah stamp.', tags:['Public profile'], wave:true},
+    {k:'tip', x:84, y:42, ic:'star', title:'Sunset view across the Yamuna', sub:'Secret spot · verified local guide', body:'Walk the riverbank beside Mehtab Bagh at sunset to see the Taj reflected in the river, without the crowds.', tags:['214 saved','Free']},
+    {k:'tip', x:58, y:83, ic:'food', title:'Chai stall that opens at 5 am', sub:'Tip from a traveller · 3 days ago', body:'Perfect before a sunrise visit. Order "दो चाय दीजिए, कम चीनी".', tags:['₹20','Veg-friendly','Indian travellers ★ 4.7']},
+    {k:'tip', x:14, y:12, ic:'food', title:'Bedai and jalebi breakfast', sub:'Secret spot · verified local foodie', body:'Agra’s classic breakfast in the old city lanes. Go before 10 am, when stalls sell out.', tags:['Under ₹100','Locals’ favourite']},
+    {k:'tip', x:88, y:24, ic:'lock', locked:true, title:'Locked secret spot', sub:'Unlock it in Secret spots', body:'Answer a quick Hindi question to reveal this hidden heritage site.', tags:['Hidden heritage'], go:'secrets'},
+    {k:'event', x:48, y:70, ic:'chai', title:'Group chai walk · 5 pm today', sub:'Taj Ganj · hosted by a verified local', body:'A 45-minute walk through Taj Ganj with chai stops. Practise ordering in Hindi together.', tags:['6 going','Opt-in','Beginner friendly'], safety:'Starts at a public spot near the South Gate. Women-only group available.', join:true},
+    {k:'event', x:28, y:88, ic:'talk', title:'Hindi speaking hour', sub:'Café in Sadar Bazaar · 7 pm', body:'Learners and locals swap phrases over snacks. All levels welcome.', tags:['11 going','Opt-in'], safety:'Public café. Share your plan with your Trip Circle.', join:true},
+    {k:'trip', x:72, y:66, ic:'speak', title:'You spoke Hindi here', sub:'Taj Mahal East Gate · yesterday', body:'"दो टिकट, कृपया" (Two tickets, please). Pronunciation 94%.', tags:['+20 XP']},
+    {k:'trip', x:52, y:82, ic:'speak', title:'You spoke Hindi here', sub:'Chai stall, Taj Ganj · yesterday', body:'"दो चाय दीजिए, कम चीनी" (Two teas, less sugar).', tags:['+15 XP']},
+    {k:'trip', x:24, y:24, ic:'scan', title:'You scanned this place', sub:'Agra Fort · today', body:'Saved 2 words: किला (fort), दरवाज़ा (gate).', tags:['+10 XP']}
+  ];
+  const ICONS = {
+    star:'<path fill="#fff" d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21l1.5-7L2 9.3l7-.8z"/>',
+    food:'<path fill="#fff" d="M3 11h18a9 9 0 0 1-18 0zm3-2c0-3 2-5 6-5s6 2 6 5z"/>',
+    lock:'<rect x="5" y="11" width="14" height="10" rx="2.5" fill="#fff"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#fff" stroke-width="2.6"/>',
+    chai:'<path fill="#fff" d="M4 8h13v6a6 6 0 0 1-12 0zm13 2h2a3 3 0 0 1 0 6h-2.5"/><path d="M8 2c0 2 2 2 2 4M12 2c0 2 2 2 2 4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>',
+    talk:'<path fill="#fff" d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>',
+    speak:'<path fill="#fff" d="M9 3h6v10a3 3 0 0 1-6 0z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/>',
+    scan:'<path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="12" cy="12" r="3.5" fill="#fff"/>'
+  };
+  const KCOL = {tip:'var(--pink)', event:'var(--green)', trip:'var(--orange)'};
+  const layersOn = {person:true, tip:true, event:true, trip:false};
+  const mapLayer = $('#mapLayer'), sheet = $('#mapsheet'), mapbox = $('#mapbox');
+  let selPin = null;
+  function renderMap(){
+    mapLayer.innerHTML = '';
+    mapItems.forEach((it, i) => {
+      if (it.k === 'heat') { if (!layersOn.person) return; const h = document.createElement('div'); h.className = 'heat'; Object.assign(h.style, {left:it.x+'%', top:it.y+'%', width:it.r+'px', height:it.r+'px'}); mapLayer.appendChild(h); return; }
+      if (it.k === 'place') { const l = document.createElement('div'); l.className = 'place-label'; l.style.left = it.x+'%'; l.style.top = it.y+'%'; l.textContent = it.label; mapLayer.appendChild(l); return; }
+      if (!layersOn[it.k]) return;
+      const b = document.createElement('button'); b.type = 'button';
+      b.className = 'pin ' + (it.k === 'person' ? 'person' : 'place') + (it.locked ? ' locked' : '') + (selPin === i ? ' sel' : '');
+      b.style.left = it.x + '%'; b.style.top = it.y + '%';
+      b.setAttribute('aria-label', it.title);
+      const col = it.k === 'person' ? COLORS[i % COLORS.length] : KCOL[it.k];
+      b.innerHTML = '<span class="head" style="background:' + col + '">' + (it.k === 'person' ? '' : '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">' + ICONS[it.ic] + '</svg>') + '</span><span class="tail"></span>';
+      if (it.k === 'person') b.querySelector('.head').textContent = it.n;
+      if (it.count) { const c = document.createElement('span'); c.className = 'count'; c.textContent = it.count; b.appendChild(c); }
+      b.addEventListener('click', e => { e.stopPropagation(); openPin(i); });
+      mapLayer.appendChild(b);
+    });
+  }
+  function closeSheet(){ sheet.classList.remove('show'); selPin = null; renderMap(); }
+  function openPin(i){
+    const it = mapItems[i]; selPin = i; renderMap();
+    const col = it.k === 'person' ? COLORS[i % COLORS.length] : KCOL[it.k];
+    sheet.innerHTML = '<div class="top"><span class="av" style="background:' + col + '"></span><div style="min-width:0"><h3></h3><div class="sub"></div></div><button class="close" type="button" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p></p><div class="tags"></div>';
+    const av = sheet.querySelector('.av');
+    if (it.k === 'person') av.textContent = it.n; else av.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24">' + ICONS[it.ic] + '</svg>';
+    sheet.querySelector('h3').textContent = it.title; sheet.querySelector('.sub').textContent = it.sub; sheet.querySelector('p').textContent = it.body;
+    const tg = sheet.querySelector('.tags'); (it.tags || []).forEach(t => { const s = document.createElement('span'); s.textContent = t; tg.appendChild(s); });
+    if (it.safety) { const sf = document.createElement('div'); sf.className = 'safety'; sf.textContent = it.safety; sheet.appendChild(sf); }
+    const act = document.createElement('div'); act.className = 'row';
+    const mk = (txt, cls, fn) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ' + (cls || ''); b.textContent = txt; b.addEventListener('click', fn); act.appendChild(b); return b; };
+    if (it.wave) mk('Say नमस्ते', '', e => { addXP(5, e.currentTarget); toast('You waved at ' + it.title); e.currentTarget.disabled = true; e.currentTarget.textContent = 'Waved!'; });
+    if (it.k === 'tip' && !it.locked) { mk('Save', 'ghost', e => { toast('Saved to My Discoveries'); e.currentTarget.disabled = true; e.currentTarget.textContent = 'Saved'; }); mk('Helpful +1', '', e => { addXP(5, e.currentTarget); toast('Thanks! This helps the next traveller'); e.currentTarget.disabled = true; }); }
+    if (it.go) mk('Open Secret spots', 'blue', () => { closeSheet(); go(it.go); });
+    if (it.join) mk('Join · opt-in', '', e => { confetti(); addXP(10, e.currentTarget); toast('You’re in! Shared with your Trip Circle'); e.currentTarget.disabled = true; e.currentTarget.textContent = 'Going'; });
+    if (it.k === 'trip') mk('Practise it again', 'blue', () => speak(it.body.split('"')[1] || ''));
+    if (act.children.length) sheet.appendChild(act);
+    sheet.querySelector('.close').addEventListener('click', closeSheet);
+    sheet.classList.add('show');
+  }
+  $$('.layers button').forEach(b => b.addEventListener('click', () => { const k = b.dataset.layer; layersOn[k] = !layersOn[k]; b.classList.toggle('on', layersOn[k]); closeSheet(); }));
+  $('#ghostBtn').addEventListener('click', e => { const on = mapbox.classList.toggle('ghosted'); e.currentTarget.classList.toggle('on', on); e.currentTarget.setAttribute('aria-pressed', on); toast(on ? 'Ghost mode on' : 'Sharing with your Trip Circle only'); });
+  $('#dropTip').addEventListener('click', () => {
+    selPin = null; renderMap();
+    sheet.innerHTML = '<div class="top"><span class="av" style="background:var(--pink)"><svg width="22" height="22" viewBox="0 0 24 24">' + ICONS.star + '</svg></span><div><h3>Drop a tip here</h3><div class="sub">Pinned near you · Taj Ganj</div></div><button class="close" type="button" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><label class="sr" for="tipText">Your tip</label><textarea id="tipText" maxlength="160">Best lassi near the South Gate. Ask for "मीठी लस्सी".</textarea><div class="tags"><span>Food</span><span>Veg-friendly</span><span>Under ₹100</span></div><button class="btn" type="button" id="postTip">Post tip · +20 XP</button>';
+    sheet.querySelector('.close').addEventListener('click', closeSheet);
+    sheet.querySelector('#postTip').addEventListener('click', e => {
+      const txt = sheet.querySelector('#tipText').value.trim() || 'New tip';
+      mapItems.push({k:'tip', x:47 + Math.random()*10, y:64 + Math.random()*5, ic:'star', title:'Your tip', sub:'Posted just now · visible to travellers nearby', body:txt, tags:['New','By you']});
+      layersOn.tip = true; $$('.layers button').forEach(b => { if (b.dataset.layer === 'tip') b.classList.add('on'); });
+      addXP(20, e.currentTarget); confetti(); toast('Tip posted! Travellers nearby can see it');
+      closeSheet();
+    });
+    sheet.classList.add('show');
+  });
+  mapbox.addEventListener('click', e => { if (!e.target.closest('.pin, .mapsheet, .fab')) closeSheet(); });
+  setInterval(() => { const el = $('#liveCount'); if (el) el.textContent = (34 + Math.floor(Math.random()*9)) + ' learners exploring now'; }, 4000);
+  renderMap();
 
   /* ---------- passport ---------- */
   $('#contHindi').addEventListener('click', () => toast('Opening Hindi · Unit 3'));
